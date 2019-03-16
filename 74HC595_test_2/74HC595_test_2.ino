@@ -15,9 +15,9 @@ int clockPin = 9;
 ////Pin connected to DS of 74HC595
 int dataPin = 11;
 
-//rows
+//anode
 int row[]={0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01};
-//columns
+//cathode
 int col[]={0x7F, 0xBF, 0xDF, 0xEF, 0xF7, 0xFB, 0xFD, 0xFE};
 
 
@@ -36,7 +36,7 @@ void loop() {
       // the LEDs don't change while you're sending in bits:
       digitalWrite(latchPin, LOW);
       // shift out the bits:
-      shiftOut(dataPin, clockPin, MSBFIRST, B00000001);  
+      shiftOut(dataPin, clockPin, MSBFIRST, row[index]);  
       shiftOut(dataPin, clockPin, MSBFIRST, col[index2]);  
   
       //take the latch pin high so the LEDs will light up:
